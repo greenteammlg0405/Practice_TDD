@@ -14,4 +14,20 @@ class TaskController extends Controller
         
         return view('index', compact('tasks'));
     }
+
+    // taskの詳細を表示する関数
+    public function detail(int $id)
+    {
+        
+        // $task = (object)[
+        //     'id' => 2,
+        //     'title' => 'テストタスク',
+        //     'executed' => false
+        // ];
+        $task = Task::find($id);
+        if (is_null($task)) {
+            abort(404);
+        }
+        return view('detail', compact('task'));
+    }
 }

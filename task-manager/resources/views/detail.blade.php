@@ -16,14 +16,26 @@
 </head>
 <body>
 <div class="container">
-    <h2>Tasks List</h2>
-    <ul>
-        @foreach ($tasks as $task)
-            <li>
-                <a href="/tasks/{{ $task->id }}">{{ $task->title }}</a> <input type="checkbox"　name="checkbox_{{ $task->id }}" {!! $task->executed ? 'checked="checked"' : '' !!}>
-            </li>
-        @endforeach
-    </ul>
+    <h2>Tasks Detail</h2>
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <td>タイトル</td>
+                    <td>実行済み</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ $task->title }}</td>
+                    <td><input type="checkbox"
+                               name="checkbox_{{ $task->id }}" {!! $task->executed ? 'checked="checked"' : '' !!}></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 </html>
