@@ -22,4 +22,18 @@ class TasksIndexTest extends DuskTestCase
                 ->screenshot("tasks_index");
         });
     }
+
+    /**
+     * インデックスから詳細に飛ぶテスト
+     */
+    public function testIndexToDetail() {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/tasks')
+                ->assertSeeLink('テストタスク')
+                ->clickLink('テストタスク')
+                ->waitForLocation('/tasks/2', 1)
+                ->assertPathIs('/tasks/2')
+                ->assertSee('テストタスク');
+        });
+    }
 }
