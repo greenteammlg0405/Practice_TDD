@@ -8,5 +8,8 @@ class Task extends Model
 {
     //
     // taskをついか
-    
+    protected $fillable = [
+        'title',
+        'executed'
+    ];
 }
