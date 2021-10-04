@@ -19,6 +19,7 @@
     <h2>Tasks Detail</h2>
     <div class="row">
         <div class="col-md-offset-2 col-md-8">
+            {!! Form::open(['action' => ['TaskController@update', $task->id], 'method' => 'put']) !!}
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -28,12 +29,13 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>{{ $task->title }}</td>
-                    <td><input type="checkbox"
-                               name="checkbox_{{ $task->id }}" {!! $task->executed ? 'checked="checked"' : '' !!}></td>
+                    <td>{{ Form::text('title', $task->title, ['id' => 'title', 'class' => 'form-control']) }}</td>
+                    <td>{{ Form::checkbox('executed', 'on', $task->executed) }}</td>
                 </tr>
                 </tbody>
             </table>
+            {{ Form::submit('更新', ['class' => 'btn btn-primary']) }}
+            {!! Form::close() !!}            
         </div>
     </div>
 </div>
