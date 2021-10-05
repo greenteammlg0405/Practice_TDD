@@ -189,4 +189,18 @@ class TaskControllerTest extends TestCase
 
         $this->assertDatabaseHas('tasks', $data);
     }
+
+    /**
+     * 削除のためのrouteがリダイレクトまでいくテスト
+     */
+    public function testTaskRemoveToPathToEnd() {
+        $this->assertDatabaseHas('tasks', $this->task->toArray());
+
+        $response = $this->delete('/tasks/' . $this->task->id);
+
+        $response->assertStatus(302)
+            ->assertRedirect('/tasks/');
+
+        $this->assertDatabaseMissing('tasks', $this->task->toArray());
+    }
 }

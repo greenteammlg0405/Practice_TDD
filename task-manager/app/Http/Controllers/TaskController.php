@@ -82,4 +82,15 @@ class TaskController extends Controller
         // 意図的にリダイレクトにしている
         return redirect('/tasks');
     }
+
+    /**
+     * 削除する関数
+     */
+    public function remove($id)
+    {
+        Task::destroy($id);
+        
+        // 意図的にリダイレクトにしている
+        return redirect('/tasks');
+    }
 }
