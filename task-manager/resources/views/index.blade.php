@@ -25,5 +25,11 @@
         @endforeach
     </ul>
 </div>
+<div class="col-md-2">
+    {{ link_to_action('TaskController@new',
+        '新規追加',
+        [],
+        ['class' => 'btn btn-primary btn-block']) }}
+</div>
 </body>
 </html>
