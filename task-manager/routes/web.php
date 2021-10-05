@@ -21,3 +21,5 @@ Route::put('/tasks/{id}', 'TaskController@update')->where('id', '[0-9]+');
 
 Route::get('/tasks/new', 'TaskController@new');
 Route::post('/tasks', 'TaskController@create');
+
+Route::delete('/tasks/{id}', 'TaskController@remove')->where('id', '[0-9]+');
