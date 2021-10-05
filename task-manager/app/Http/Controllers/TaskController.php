@@ -46,7 +46,7 @@ class TaskController extends Controller
             $fillData['title'] = $request->title;
         }
         if (isset($request->executed)) {
-            $fillData['executed'] = $request->executed;
+            $fillData['executed'] = 1;
         }
 
         if (count($fillData) > 0) {
@@ -55,5 +55,31 @@ class TaskController extends Controller
         }
 
         return redirect('/tasks/' . $id);
+    }
+
+    /**
+     * 新規作成画面への遷移
+     */
+    public function new()
+    {
+        return view('new');
+    }
+
+    /**
+     * 新規作成する関数
+     */
+    public function create(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|max:512',
+        ]);
+
+        $response = Task::create([
+            'title' => $request->title,
+            'executed' => false
+        ]);
+        
+        // 意図的にリダイレクトにしている
+        return redirect('/tasks');
     }
 }
